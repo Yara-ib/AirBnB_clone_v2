@@ -1,13 +1,15 @@
 #!/usr/bin/python3
 """ Place Module for HBNB project """
-from models.base_model import BaseModel, Base, Column, String, Integer
-from models.base_model import Float, relationship, ForeignKey
+from models.base_model import BaseModel, Base, Column, String, Integer, relationship
+from sqlalchemy import Float, ForeignKey
 from models.review import Review
 from models.amenity import Amenity
+from os import getenv
 
 
 class Place(BaseModel, Base):
     """ A place to stay """
+if getenv(key='HBNB_TYPE_STORAGE') == 'db':
     __tablename__ = 'places'
 
     city_id = Column(
@@ -40,21 +42,34 @@ class Place(BaseModel, Base):
     latitude = Column('latitude', Float)
     longitude = Column('longitude', Float)
 
+    place_amenity = Table(
+    'place_amenity',
+    Base.metadata,
+    Column(
+        'place_id', String(60),
+        ForeignKey('places.id'),
+        nullable=False, primary_key=True
+        ),
+    Column(
+        'amenities.id', String(60),
+        ForeignKey('amenities.id'),
+        nullable=False, primary_key=True
+        )
+    )
     amenity_ids = []
 
     reviews = relationship('Review', backref='place')
 
     amenities = relationship(
         'Amenity', secondary='place_amenity',
-        viewonly=False, back_populates='place_amenities'
-        )
+        viewonly=False, back_populates='place_amenities')
 
     @property
     def reviews(self):
         """ Getter for reviews """
         reviews_collection = []
         for item in self.reviews:
-            if Review.place_id == Place.id:
+            if item.place_id == self.id:
                 reviews_collection.append(item)
         return reviews_collection
 
