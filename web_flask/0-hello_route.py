@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 
 @app.route("/", strict_slashes=False)
-def hello():
+def hello_HBNB():
     """
     Method to display “Hello HBNB!”
 
@@ -19,4 +19,4 @@ def hello():
 
 if __name__ == "__main__":
     """ Changing port & host Flask listen to """
-    app.run(host='0.0.0.0', port=5000)
+    app.run(debug=True, host='0.0.0.0', port=5000)
