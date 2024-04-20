@@ -38,7 +38,7 @@ def c_is_fun_or_cool(text):
         string: C + string
     """
     text_replaced = text.replace("_", " ")
-    return f"C {text_replaced}"
+    return f"C {escape(text_replaced)}"
 
 
 if __name__ == "__main__":
