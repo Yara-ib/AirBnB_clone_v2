@@ -16,6 +16,7 @@ def hello_HBNB():
     """
     return "Hello HBNB!"
 
+
 @app.route("/hbnb", strict_slashes=False)
 def HBNB():
     """
@@ -25,6 +26,7 @@ def HBNB():
         string: HBNB
     """
     return "HBNB"
+
 
 if __name__ == "__main__":
     """ Changing port & host Flask listen to """
