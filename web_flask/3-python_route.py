@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" HBNB or Hello HBNB! or C is fun!? Module """
+""" HBNB or Hello HBNB! or C is fun! Maybe Python? Module """
 from flask import Flask
 from markupsafe import escape
 
