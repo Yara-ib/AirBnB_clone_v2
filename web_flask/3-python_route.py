@@ -40,6 +40,7 @@ def c_is_fun_or_cool(text):
     text_replaced = text.replace("_", " ")
     return f"C {escape(text_replaced)}"
 
+
 @app.route("/python/", strict_slashes=False, defaults={'text': 'is cool'})
 @app.route("/python/<text>", strict_slashes=False)
 def python_more_fun(text):
